@@ -1,5 +1,5 @@
 package com.test.test;
-import com.test.test.Repo;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -13,30 +13,32 @@ import org.springframework.web.client.RestTemplate;
 public class RepoListController {
 
 	@GetMapping("/repoList")
-	public List<Repo> repoList(@RequestParam(value = "user", defaultValue = "") String user)
-			throws UserNotFoundException {
-		if (user.length() == 0) {
-			throw new UserNotSpecifiedException(user);
-		}
+	public List<Repo> repoList(@RequestParam(value = "user", defaultValue = "") String user){
+		validateUser(user);
 		try {
 			return getRepoList(user);
 		} catch (HttpClientErrorException e) {
-			if(e.getResponseBodyAsString().contains("https://docs.github.com/rest/overview/resources-in-the-rest-api#rate-limiting")) {
-				throw new LimitExceededException("Too many request, check https://docs.github.com/rest/overview/resources-in-the-rest-api#rate-limiting");
-			}
+			Validation.githubError(e, user);
+			return new ArrayList<Repo>();
+		}	
+	}
+
+	private void validateUser(String user) {
+		if (user.length() == 0) {
+			throw new UserNotSpecifiedException(user);
+		}else if (user.length()>40) {
 			throw new UserNotFoundException(user);
-		}
+		}		
 	}
 
 	private List<Repo> getRepoList(String user) throws HttpClientErrorException {
 
-		final String urlTemplate = "https://api.github.com/users/%s/repos?per_page=100&page=%d";
 		RestTemplate restTemplate = new RestTemplate();
 		List<Repo> list = new ArrayList<Repo>();
 		Repo[] repos;
 		int i = 1;
 		do {
-			repos = restTemplate.getForObject(String.format(urlTemplate, user, i), Repo[].class);
+			repos = restTemplate.getForObject(String.format(Validation.urlTemplate, user, i), Repo[].class);
 			list.addAll(Arrays.asList(repos));
 			i++;
 		} while (repos.length != 0);

@@ -38,5 +38,11 @@ public class RControllerdAdvice {
 	String limitExceededException(LimitExceededException ex){
 		return "{" + '"' + "message" + '"' + ": " + '"' + ex.getMessage() + '"' + "}";
 	}
+	@ResponseBody
+	@ExceptionHandler(GithubException.class)
+	@ResponseStatus(HttpStatus.NOT_FOUND)
+	void limitExceededException(GithubException ex){
+		Validation.githubError(ex.getE(),ex.getUser());
+	}
 
 }
