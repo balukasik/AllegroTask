@@ -1,32 +1,17 @@
 package com.test.test;
 
-import org.springframework.web.client.RestTemplate;
-
 public class Stars {
-	
-	private final long id;
-	private final String content;
-	
-	public Stars(long id, String user) {
-		super();
-		this.id = id;
-		this.content = getSum(user);
+	private final long stargazers_count;
+
+	public Stars() {
+		this.stargazers_count = 0;
 	}
 
-	public long getId() {
-		return id;
+	public Stars(long stars) {
+		this.stargazers_count = stars;
 	}
 
-	public String getContent() {
-		return content;
+	public long getStargazers_count() {
+		return stargazers_count;
 	}
-	
-	private String getSum(String user) {
-
-		final String urlTemplate = "https://api.github.com/users/%s/repos";
-		RestTemplate restTemplate = new RestTemplate();
-
-		return restTemplate.getForObject(String.format(urlTemplate, user), String.class);
-	}
-	
 }
