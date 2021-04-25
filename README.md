@@ -25,4 +25,4 @@ Bartłomiej Łukasik
 ### Standard way
 While in project catalog type mvnw package. After that you should have test-0.0.1-SNAPSHOT.jar file in target folder. You can use it to host app on any web serwer (for example: Tomcat)
 ### Azure hosting
-I personally use Azure service. All you have to do is get AppService with java 8 and go to section deploy where you can add link to this repo. Moreover every time master gets updated on github Azure creates new deploy and ecerything is up to date!
+I personally use Azure service. All you have to do is get AppService with java 8 and go to section deploy where you can add link to this repo. Moreover every time master gets updated on github, Azure creates new deploy and everything is always up to date!
