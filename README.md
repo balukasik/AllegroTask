@@ -10,11 +10,11 @@ Bartłomiej Łukasik
 - Spring 2.4.5
 
 ## Usage
-### To get JSON with Repo list for username:
-- https://springallegro.azurewebsites.net/repoList?user=username
+### To get JSON with Repo list for username = balukasik:
+- https://springallegro.azurewebsites.net/repoList?user=balukasik
   - response: JSON with 2 fields (name and stargazers_count)
-### To get JSON with star sum for username:
-- https://springallegro.azurewebsites.net/starSum?user=username
+### To get JSON with star sum for username = balukasik:
+- https://springallegro.azurewebsites.net/starSum?user=balukasik
   - response: JSON with 1 field (stargazers_count)
 
 ## Warning
