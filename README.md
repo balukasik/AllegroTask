@@ -11,10 +11,10 @@ Bartłomiej Łukasik
 
 ## Usage
 ### To get JSON with Repo list for username:
-- https://springallegro.azurewebsites.net/repoList?user=<username>
+- https://springallegro.azurewebsites.net/repoList?user=username
   - response: JSON with 2 fields (name and stargazers_count)
 ### To get JSON with star sum for username:
-- https://springallegro.azurewebsites.net/starSum?user=<username>
+- https://springallegro.azurewebsites.net/starSum?user=username
   - response: JSON with 1 field (stargazers_count)
 
 ## Warning
